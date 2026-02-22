@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Óptica San Francisco Escobedo | Tu Visión, Nuestra Familia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --primary-light: #2d5a8a;
+            --accent: #e8b86d;
+            --accent-hover: #d4a55c;
+            --danger: #dc2626;
+            --success: #059669;
+            --bg-cream: #faf8f5;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        @keyframes countDown {
+            0% { transform: scale(1.2); color: var(--danger); }
+            100% { transform: scale(1); color: var(--text-dark); }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .logo-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+
+        .logo-text span {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .header-contact {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .phone-badge {
+            background: var(--accent);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 50%;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.4s forwards;
+        }
+
+        /* Selector de Audiencia */
+        .audience-selector {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.6s forwards;
+        }
+
+        .selector-title {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .selector-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .option-card {
+            background: rgba(255,255,255,0.15);
+            border: 2px solid transparent;
+            border-radius: 15px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.25);
+            border-color: var(--accent);
+        }
+
+        .option-card.active {
+            background: var(--accent);
+            color: var(--primary);
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .option-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .option-label {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .option-sub {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            margin-top: 0.25rem;
+        }
+
+        /* Contenido Dinámico del Hero */
+        .dynamic-content {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(0,0,0,0.2);
+            border-radius: 15px;
+            display: none;
+        }
+
+        .dynamic-content.active {
+            display: block;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .dynamic-content h3 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .benefits-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .benefits-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .benefits-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Urgency Bar */
+        .urgency-bar {
+            background: linear-gradient(90deg, #fee2e2 0%, #fecaca 100%);
+            border-left: 5px solid var(--danger);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.8s forwards;
+        }
+
+        .urgency-text {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+        }
+
+        .urgency-icon {
+            font-size: 2rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        .urgency-content h4 {
+            color: var(--danger);
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .urgency-content p {
+            color: #7f1d1d;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .spots-counter {
+            background: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .spots-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--danger);
+            line-height: 1;
+            transition: all 0.3s ease;
+        }
+
+        .spots-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        /* Hero Image/Form */
+        .hero-form-container {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            color: var(--text-dark);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 1s forwards;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .coupon-badge {
+            background: linear-gradient(135deg, var(--accent) 0%, #f4d03f 100%);
+            color: var(--primary);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .coupon-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        .coupon-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .coupon-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1.25rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(30, 58, 95, 0.3);
+        }
+
+        .submit-btn::after {
+            content: '→';
+            margin-left: 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        .submit-btn:hover::after {
+            transform: translateX(5px);
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        /* Comparison Section */
+        .comparison-section {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .comparison-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+        }
+
+        .comparison-header {
+            background: var(--primary);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 2rem;
+            font-weight: 600;
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 2rem;
+            padding: 1.25rem 2rem;
+            border-bottom: 1px solid #f3f4f6;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .comparison-row:hover {
+            background: #f9fafb;
+        }
+
+        .comparison-row:last-child {
+            border-bottom: none;
+            background: var(--bg-cream);
+            font-weight: 700;
+        }
+
+        .feature-name {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .mall-price {
+            text-align: center;
+            color: var(--text-light);
+            text-decoration: line-through;
+            font-size: 0.95rem;
+        }
+
+        .our-price {
+            text-align: center;
+            color: var(--success);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .savings-highlight {
+            background: linear-gradient(135deg, var(--success) 0%, #10b981 100%);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        .total-row .mall-price {
+            font-size: 1.3rem;
+            color: var(--danger);
+        }
+
+        .total-row .our-price {
+            font-size: 1.5rem;
+        }
+
+        .comparison-footer {
+            padding: 2rem;
+            text-align: center;
+            background: var(--bg-cream);
+            border-top: 2px solid var(--accent);
+        }
+
+        .guarantee-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .guarantee-icon {
+            font-size: 2.5rem;
+        }
+
+        .guarantee-text h4 {
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .guarantee-text p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Social Proof */
+        .social-proof {
+            padding: 4rem 2rem;
+            background: var(--bg-cream);
+        }
+
+        .testimonials-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.3;
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .stars {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-text {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            line-height: 1.7;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .author-info h4 {
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        .author-info p {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--primary);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 1.25rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(232, 184, 109, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(232, 184, 109, 0.4);
+            background: var(--accent-hover);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            color: white;
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            line-height: 1.8;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #1e293b;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+
+            .selector-options {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-header,
+            .comparison-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .comparison-header {
+                display: none;
+            }
+
+            .comparison-row {
+                padding: 1.5rem;
+                border: 1px solid #e5e7eb;
+                margin-bottom: 1rem;
+                border-radius: 10px;
+            }
+
+            .feature-name {
+                justify-content: center;
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2.5rem;
+        }
+
+        .coupon-code {
+            background: #f3f4f6;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1rem 0;
+            border: 2px dashed var(--primary);
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">👁️</div>
+                <div class="logo-text">
+                    <h1>Óptica San Francisco</h1>
+                    <span>Escobedo, N.L. • Desde 1985</span>
+                </div>
+            </div>
+            <div class="header-contact">
+                <div class="phone-badge">
+                    <span>📞</span>
+                    <span>81-1234-5678</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h2>Tu visión es nuestra prioridad familiar</h2>
+                <p>En Escobedo, llevamos 40 años cuidando los ojos de tu familia con tecnología de punta y precios justos.</p>
+                
+                <!-- Selector de Audiencia -->
+                <div class="audience-selector">
+                    <div class="selector-title">¿Para quién buscas lentes hoy?</div>
+                    <div class="selector-options">
+                        <div class="option-card" onclick="selectAudience('kids')">
+                            <span class="option-icon">👶</span>
+                            <div class="option-label">Niños</div>
+                            <div class="option-sub">0-12 años</div>
+                        </div>
+                        <div class="option-card" onclick="selectAudience('adults')">
+                            <span class="option-icon">👤</span>
+                            <div class="option-label">Adultos</div>
+                            <div class="option-sub">13-55 años</div>
+                        </div>
+                        <div class="option-card" onclick="selectAudience('computer')">
+                            <span class="option-icon">💻</span>
+                            <div class="option-label">Computadora</div>
+                            <div class="option-sub">Filtro azul</div>
+                        </div>
+                    </div>
+
+                    <!-- Contenido Dinámico -->
+                    <div id="content-kids" class="dynamic-content">
+                        <h3>👓 Lentes Infantiles Ultra-Resistentes</h3>
+                        <ul class="benefits-list">
+                            <li>Armazones flexibles irrompibles (garantía de 1 año)</li>
+                            <li>Examen adaptado para niños con equipo especializado</li>
+                            <li>Control de miopía con lentes especiales</li>
+                            <li>Seguro contra pérdida incluido</li>
+                        </ul>
+                    </div>
+
+                    <div id="content-adults" class="dynamic-content">
+                        <h3>🎯 Precisión Visual para tu Estilo de Vida</h3>
+                        <ul class="benefits-list">
+                            <li>Lentes progresivos digitales sin adaptación</li>
+                            <li>Fotocromáticos de última generación</li>
+                            <li>Armazones de diseñador hasta 40% OFF</li>
+                            <li>Examen con optometrista certificado</li>
+                        </ul>
+                    </div>
+
+                    <div id="content-computer" class="dynamic-content">
+                        <h3>🖥️ Protección Digital Total</h3>
+                        <ul class="benefits-list">
+                            <li>Filtro de luz azul certificado</li>
+                            <li>Antirreflejante premium para pantallas</li>
+                            <li>Reduce fatiga visual y dolores de cabeza</li>
+                            <li>Ideal para home office y gamers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Urgency Bar -->
+                <div class="urgency-bar">
+                    <div class="urgency-text">
+                        <span class="urgency-icon">🔥</span>
+                        <div class="urgency-content">
+                            <h4>¡Promoción de la Semana!</h4>
+                            <p>Examen de la vista completamente GRATIS + $200 pesos de descuento adicional</p>
+                        </div>
+                    </div>
+                    <div class="spots-counter">
+                        <div class="spots-number" id="spots-count">4</div>
+                        <div class="spots-label">espacios disponibles</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulario Lead Magnet -->
+            <div class="hero-form-container">
+                <div class="form-header">
+                    <h3>Agenda tu cita ahora</h3>
+                    <p>Completa el formulario y recibe tu cupón instantáneamente</p>
+                </div>
+
+                <div class="coupon-badge">
+                    <div class="coupon-amount">$200 MXN</div>
+                    <div class="coupon-text">DE DESCUENTO EXTRA<br>SOLO POR AGENDAR HOY</div>
+                </div>
+
+                <form id="leadForm" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo</label>
+                        <input type="text" id="nombre" required placeholder="Ej. María González">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="telefono">WhatsApp</label>
+                        <input type="tel" id="telefono" required placeholder="81-XXXX-XXXX" pattern="[0-9]{2}-[0-9]{4}-[0-9]{4}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipo">Tipo de lentes que necesitas</label>
+                        <select id="tipo" required>
+                            <option value="">Selecciona una opción</option>
+                            <option value="niños">Para mi hijo/a</option>
+                            <option value="adultos">Para mí (visión general)</option>
+                            <option value="computadora">Para computadora/trabajo</option>
+                            <option value="progresivos">Lentes progresivos</option>
+                            <option value="sol">Lentes de sol con graduación</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fecha">Fecha preferida</label>
+                        <input type="date" id="fecha" required min="">
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        Reservar mi cupón de $200
+                    </button>
+                </form>
+
+                <div class="form-footer">
+                    <div class="trust-badges">
+                        <span class="trust-badge">🔒 Datos seguros</span>
+                        <span class="trust-badge">✓ Sin compromiso</span>
+                        <span class="trust-badge">⭐ 4.9/5 rating</span>
+                    </div>
+                    <p style="margin-top: 1rem;">Promoción válida solo esta semana en sucursal Escobedo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparación de Precios -->
+    <section class="comparison-section">
+        <div class="section-header">
+            <h2>Compara y Ahorra</h2>
+            <p>El mismo paquete completo que en centros comerciales, pero con atención personalizada y precios reales de Escobedo.</p>
+        </div>
+
+        <div class="comparison-container">
+            <div class="comparison-header">
+                <div>Paquete Completo Incluye:</div>
+                <div style="text-align: center;">Centros Comerciales</div>
+                <div style="text-align: center;">Óptica San Francisco</div>
+            </div>
+
+            <div class="comparison-row">
+                <div class="feature-name">
+                    <span class="feature-icon">✓</span>
+                    <span>Examen de la vista completo</span>
+                </div>
+                <div class="mall-price">$400 - $600</div>
+                <div class="our-price">GRATIS</div>
+            </div>
+
+            <div class="comparison-row">
+                <div class="feature-name">
+                    <span class="feature-icon">✓</span>
+                    <span>Armazón de calidad (acetato/metal)</span>
+                </div>
+                <div class="mall-price">$1,200 - $2,500</div>
+                <div class="our-price">Desde $890</div>
+            </div>
+
+            <div class="comparison-row">
+                <div class="feature-name">
+                    <span class="feature-icon">✓</span>
+                    <span>Lentes monofocales antirreflejantes</span>
+                </div>
+                <div class="mall-price">$1,800 - $3,000</div>
+                <div class="our-price">$1,200</div>
+            </div>
+
+            <div class="comparison-row">
+                <div class="feature-name">
+                    <span class="feature-icon">✓</span>
+                    <span>Garantía de adaptación (30 días)</span>
+                </div>
+                <div class="mall-price">No incluida</div>
+                <div class="our-price">Incluida</div>
+            </div>
+
+            <div class="comparison-row">
+                <div class="feature-name">
+                    <span class="feature-icon">✓</span>
+                    <span>Ajustes y limpieza de por vida</span>
+                </div>
+                <div class="mall-price">$150 c/u</div>
+                <div class="our-price">GRATIS</div>
+            </div>
+
+            <div class="comparison-row total-row">
+                <div class="feature-name">
+                    <span class="feature-icon" style="background: var(--success); color: white;">$</span>
+                    <span>TOTAL DEL PAQUETE</span>
+                </div>
+                <div class="mall-price">~$3,400 - $6,100</div>
+                <div class="our-price">
+                    $2,090
+                    <div class="savings-highlight">¡Ahorras 30-40%!</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-footer">
+            <div class="guarantee-box">
+                <span class="guarantee-icon">🛡️</span>
+                <div class="guarantee-text">
+                    <h4>Garantía de Mejor Precio</h4>
+                    <p>Si encuentras el mismo paquete más barato en Escobedo, igualamos el precio + $100 de descuento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof">
+        <div class="section-header">
+            <h2>Lo que dice la comunidad de Escobedo</h2>
+            <p>Más de 15,000 familias confían en nosotros desde 1985</p>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"Llevé a mis dos hijos y el trato fue increíble. El doctor se tomó el tiempo de explicarles todo con paciencia. Los lentes de mi hijo se rompieron al mes y nos los cambiaron sin costo por la garantía."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">LM</div>
+                    <div class="author-info">
+                        <h4>Laura Martínez</h4>
+                        <p>Colonia Topo Chico, Escobedo</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"Después de pagar $5,000 en una óptica de plaza, aquí encontré lentes progresivos de mejor calidad por menos de la mitad. La atención es personal, no te tratan como número."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JR</div>
+                    <div class="author-info">
+                        <h4>José Rodríguez</h4>
+                        <p>Fraccionamiento Anáhuac</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"Los lentes para computadora me quitaron los dolores de cabeza que tenía desde hace meses. El cupón de $200 me ayudó mucho. Totalmente recomendados."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AP</div>
+                    <div class="author-info">
+                        <h4>Ana Patricia López</h4>
+                        <p>Centro de Escobedo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>No dejes pasar esta oportunidad</h2>
+            <p style="font-size: 1.2rem; opacity: 0.9;">Solo quedan <strong>4 espacios</strong> para examen gratuito esta semana. Tu visión no puede esperar.</p>
+            <a href="#leadForm" class="cta-button" onclick="document.querySelector('.hero-form-container').scrollIntoView({behavior: 'smooth'})">
+                Agendar mi cita ahora →
+            </a>
+            <p style="margin-top: 2rem; opacity: 0.8; font-size: 0.9rem;">
+                📍 Av. Revolución #123, Centro de Escobedo (frente al parque)<br>
+                📞 81-1234-5678 • WhatsApp disponible
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Óptica San Francisco</h3>
+                <p>40 años cuidando la visión de Escobedo. Somos tu óptica de confianza, donde te tratamos como familia, no como cliente.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Horario</h3>
+                <p>Lunes a Viernes: 9:00 AM - 7:00 PM</p>
+                <p>Sábados: 9:00 AM - 3:00 PM</p>
+                <p>Domingos: Cerrado</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <a href="tel:8112345678">📞 81-1234-5678</a>
+                <a href="mailto:contacto@opticasanfrancisco.com">✉️ contacto@opticasanfrancisco.com</a>
+                <a href="#">📍 Ver mapa de ubicación</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Óptica San Francisco Escobedo. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Modal de Éxito -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="success-icon">✓</div>
+            <h2 style="color: var(--primary); margin-bottom: 1rem;">¡Cita Agendada!</h2>
+            <p style="color: var(--text-light); margin-bottom: 1.5rem;">Tu cupón de descuento ha sido generado. Muestra este código en recepción:</p>
+            <div class="coupon-code" id="couponCode">ESC200-7842</div>
+            <p style="font-size: 0.9rem; color: var(--text-light);">
+                Te hemos enviado un WhatsApp de confirmación.<br>
+                Válido por 7 días en sucursal Escobedo.
+            </p>
+            <button onclick="closeModal()" style="margin-top: 2rem; padding: 0.75rem 2rem; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                Entendido
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Configurar fecha mínima (mañana)
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        document.getElementById('fecha').min = tomorrow.toISOString().split('T')[0];
+
+        // Selector de audiencia
+        function selectAudience(type) {
+            // Remover active de todas las opciones
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            // Remover active de todo el contenido
+            document.querySelectorAll('.dynamic-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Agregar active a la opción seleccionada
+            event.currentTarget.classList.add('active');
+            
+            // Mostrar contenido correspondiente
+            setTimeout(() => {
+                document.getElementById('content-' + type).classList.add('active');
+            }, 100);
+
+            // Actualizar select del formulario
+            const selectMap = {
+                'kids': 'niños',
+                'adults': 'adultos',
+                'computer': 'computadora'
+            };
+            document.getElementById('tipo').value = selectMap[type];
+        }
+
+        // Sistema de escasez real
+        let spotsLeft = 4;
+        const spotsElement = document.getElementById('spots-count');
+        
+        function updateSpots() {
+            if (spotsLeft > 1) {
+                // Simular que alguien más agendó (aleatoriamente cada 20-40 segundos)
+                setTimeout(() => {
+                    if (spotsLeft > 1) {
+                        spotsLeft--;
+                        spotsElement.textContent = spotsLeft;
+                        spotsElement.style.animation = 'none';
+                        setTimeout(() => {
+                            spotsElement.style.animation = 'countDown 0.5s ease-out';
+                        }, 10);
+                        
+                        // Mostrar notificación sutil
+                        if (spotsLeft === 2) {
+                            showNotification('¡Alguien acaba de agendar! Solo quedan 2 espacios.');
+                        } else if (spotsLeft === 1) {
+                            showNotification('⚠️ Último espacio disponible para esta semana');
+                        }
+                    }
+                    updateSpots();
+                }, Math.random() * 20000 + 20000);
+            }
+        }
+
+        function showNotification(message) {
+            // Crear notificación toast
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: var(--danger);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 10000;
+                animation: fadeInUp 0.5s ease-out;
+                font-weight: 600;
+                max-width: 300px;
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(20px)';
+                setTimeout(() => toast.remove(), 500);
+            }, 5000);
+        }
+
+        // Iniciar el contador de escasez
+        updateSpots();
+
+        // Manejar formulario
+        function handleSubmit(e) {
+            e.preventDefault();
+            
+            // Validar que se haya seleccionado una fecha
+            const fecha = document.getElementById('fecha').value;
+            if (!fecha) {
+                alert('Por favor selecciona una fecha para tu cita');
+                return;
+            }
+
+            // Generar código de cupón único
+            const code = 'ESC200-' + Math.floor(1000 + Math.random() * 9000);
+            document.getElementById('couponCode').textContent = code;
+            
+            // Mostrar modal
+            document.getElementById('successModal').classList.add('active');
+            
+            // Reducir contador de spots si es necesario
+            if (spotsLeft > 0) {
+                spotsLeft--;
+                spotsElement.textContent = spotsLeft;
+            }
+            
+            // Resetear formulario
+            e.target.reset();
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').classList.remove('active');
+        }
+
+        // Cerrar modal al hacer click fuera
+        document.getElementById('successModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Animación de entrada al scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos para animar
+        document.querySelectorAll('.testimonial-card, .comparison-row').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
