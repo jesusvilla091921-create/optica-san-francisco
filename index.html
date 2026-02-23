@@ -621,71 +621,6 @@
             color: #6f85a0;
         }
 
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: var(--radius);
-            padding: 2.5rem;
-            max-width: 450px;
-            width: 100%;
-            text-align: center;
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-muted);
-        }
-
-        .success-icon {
-            width: 70px;
-            height: 70px;
-            background: #059669;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.2rem;
-            margin: 0 auto 1.5rem;
-        }
-
-        .coupon-code {
-            background: #f1f5f9;
-            padding: 1rem;
-            border-radius: 8px;
-            font-family: monospace;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin: 1rem 0;
-            border: 2px dashed var(--accent);
-        }
-
         /* Responsive */
         @media (max-width: 900px) {
             .hero-container {
@@ -727,7 +662,7 @@
         <div class="header-contact">
             <div class="phone-badge">
                 <span>📞</span>
-                <span>81-1234-5678</span>
+                <span>81-1655-6395</span> <!-- Número actualizado -->
             </div>
         </div>
     </div>
@@ -791,12 +726,12 @@
 
         <div class="hero-form-container">
             <div class="form-header">
-                <h3>Agenda tu cita</h3>
-                <p>Recibe un cupón de descuento por $200</p>
+                <h3>Solicita tu cotización</h3>
+                <p>Recibe una ficha por WhatsApp con los detalles y el precio</p>
             </div>
             <div class="coupon-badge">
                 <div class="coupon-amount">$200 MXN</div>
-                <div class="coupon-text">DE DESCUENTO EXTRA AL AGENDAR</div>
+                <div class="coupon-text">DE DESCUENTO EXTRA EN TU PRIMERA COMPRA</div>
             </div>
 
             <form id="leadForm" onsubmit="handleSubmit(event)">
@@ -806,7 +741,7 @@
                 </div>
                 <div class="form-group">
                     <label for="telefono">WhatsApp</label>
-                    <input type="tel" id="telefono" required placeholder="81-1234-5678">
+                    <input type="tel" id="telefono" required placeholder="8116556395">
                 </div>
                 <div class="form-group">
                     <label for="tipo">Tipo de lentes</label>
@@ -820,10 +755,10 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="fecha">Fecha preferida</label>
+                    <label for="fecha">Fecha preferida para la cita</label>
                     <input type="date" id="fecha" required min="">
                 </div>
-                <button type="submit" class="submit-btn">Reservar cupón de $200</button>
+                <button type="submit" class="submit-btn">Enviar ficha por WhatsApp</button>
             </form>
             <div class="form-footer">
                 <div class="trust-badges">
@@ -926,9 +861,9 @@
 <section class="cta-section">
     <div class="cta-content">
         <h2>Tu visión merece la mejor atención</h2>
-        <p>Agenda hoy y obtén $200 de descuento adicional en tu compra.</p>
-        <button class="cta-button" onclick="document.querySelector('.hero-form-container').scrollIntoView({behavior: 'smooth'})">Quiero mi cupón</button>
-        <p style="margin-top: 2rem; font-size: 0.95rem;">📍 Av. Revolución #123, Centro de Escobedo (frente al parque)<br>📞 81-1234-5678 • WhatsApp disponible</p>
+        <p>Solicita tu cotización ahora y obtén $200 de descuento adicional en tu compra.</p>
+        <button class="cta-button" onclick="document.querySelector('.hero-form-container').scrollIntoView({behavior: 'smooth'})">Quiero mi ficha</button>
+        <p style="margin-top: 2rem; font-size: 0.95rem;">📍 Av. Revolución #123, Centro de Escobedo (frente al parque)<br>📞 81-1655-6395 • WhatsApp disponible</p> <!-- Número actualizado -->
     </div>
 </section>
 
@@ -944,7 +879,7 @@
         </div>
         <div>
             <h3>Contacto</h3>
-            <a href="tel:8112345678">📞 81-1234-5678</a>
+            <a href="tel:8116556395">📞 81-1655-6395</a> <!-- Número actualizado -->
             <a href="mailto:contacto@opticasanfrancisco.com">✉️ contacto@opticasanfrancisco.com</a>
             <a href="#">📍 Ver mapa</a>
         </div>
@@ -954,19 +889,6 @@
     </div>
 </footer>
 
-<!-- Modal de éxito -->
-<div id="successModal" class="modal">
-    <div class="modal-content">
-        <button class="modal-close" onclick="closeModal()">×</button>
-        <div class="success-icon">✓</div>
-        <h2 style="color: var(--primary);">¡Cita agendada!</h2>
-        <p>Tu cupón de descuento ha sido generado:</p>
-        <div class="coupon-code" id="couponCode">ESC200-7842</div>
-        <p style="color: var(--text-muted); font-size: 0.9rem;">Te enviaremos un WhatsApp de confirmación.</p>
-        <button onclick="closeModal()" style="margin-top: 1.5rem; background: var(--primary); color: white; border: none; padding: 0.7rem 2rem; border-radius: 8px; cursor: pointer;">Entendido</button>
-    </div>
-</div>
-
 <script>
     // Fecha mínima: mañana
     const tomorrow = new Date();
@@ -974,10 +896,14 @@
     document.getElementById('fecha').min = tomorrow.toISOString().split('T')[0];
 
     function selectAudience(type) {
+        // Actualizar clase activa en las tarjetas
         document.querySelectorAll('.option-card').forEach(c => c.classList.remove('active'));
         event.currentTarget.classList.add('active');
+        
+        // Mostrar contenido dinámico correspondiente
         document.querySelectorAll('.dynamic-content').forEach(d => d.classList.remove('active'));
         document.getElementById('content-' + type).classList.add('active');
+        
         // Actualizar select del formulario
         const map = { kids: 'niños', adults: 'adultos', computer: 'computadora' };
         document.getElementById('tipo').value = map[type];
@@ -985,24 +911,63 @@
 
     function handleSubmit(e) {
         e.preventDefault();
+        
+        // Validar fecha
         if (!document.getElementById('fecha').value) {
-            alert('Selecciona una fecha');
+            alert('Selecciona una fecha para tu cita');
             return;
         }
-        const code = 'ESC200-' + Math.floor(1000 + Math.random() * 9000);
-        document.getElementById('couponCode').innerText = code;
-        document.getElementById('successModal').classList.add('active');
-        e.target.reset();
-    }
 
-    function closeModal() {
-        document.getElementById('successModal').classList.remove('active');
-    }
+        // Obtener valores del formulario
+        const nombre = document.getElementById('nombre').value;
+        const telefono = document.getElementById('telefono').value.replace(/\s/g, ''); // Eliminar espacios
+        const tipoLente = document.getElementById('tipo').options[document.getElementById('tipo').selectedIndex].text;
+        const fecha = document.getElementById('fecha').value;
+        
+        // Formatear fecha a un formato más legible (DD/MM/YYYY)
+        const fechaObj = new Date(fecha);
+        const fechaFormateada = fechaObj.toLocaleDateString('es-MX', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        });
 
-    window.onclick = function(e) {
-        const modal = document.getElementById('successModal');
-        if (e.target === modal) closeModal();
-    };
+        // Generar número de folio único
+        const folio = 'SF-' + Math.floor(1000 + Math.random() * 9000);
+
+        // Crear mensaje para WhatsApp con la ficha de cotización
+        const mensaje = `*🕶️ Óptica San Francisco - Ficha de Cotización*%0A%0A` +
+                       `*Folio:* ${folio}%0A` +
+                       `*Cliente:* ${nombre}%0A` +
+                       `*Teléfono:* ${telefono}%0A` +
+                       `*Tipo de lentes:* ${tipoLente}%0A` +
+                       `*Fecha preferida:* ${fechaFormateada}%0A%0A` +
+                       `*✨ Beneficios incluidos:*%0A` +
+                       `✅ Examen de la vista GRATIS%0A` +
+                       `✅ Garantía de adaptación (30 días)%0A` +
+                       `✅ Ajustes y limpieza de por vida%0A` +
+                       `✅ Cupón de $200 de descuento%0A%0A` +
+                       `*💰 Estimación de precio:*%0A` +
+                       `- Paquete completo desde $2,090 MXN%0A` +
+                       `- (Ahorras 30-40% vs centros comerciales)%0A%0A` +
+                       `*📍 Sucursal:* Av. Revolución #123, Centro de Escobedo%0A` +
+                       `*⏰ Horario:* Lun-Vie 9:00-19:00, Sáb 9:00-15:00%0A%0A` +
+                       `_¡Te esperamos para brindarte la mejor atención!_`;
+
+        // Número de WhatsApp (formato internacional sin signos)
+        const numeroWhatsApp = '528116556395'; // Número proporcionado
+        
+        // Crear URL de WhatsApp
+        const url = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
+        
+        // Redirigir a WhatsApp
+        window.open(url, '_blank');
+        
+        // Opcional: Reiniciar el formulario después de un breve momento
+        setTimeout(() => {
+            e.target.reset();
+        }, 1000);
+    }
 </script>
 </body>
 </html>
